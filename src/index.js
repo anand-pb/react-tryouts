@@ -1,17 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+
+var mcustomStyle = {
+  color: "lightblue"
+}
+
+var acustomStyle = {
+  color: "lightgreen"
+}
+
+var ecustomStyle = {
+  color: "darkgray"
+}
+
+var colorobj = {}
+var greeting = ""
+
+var randnum = Math.floor(Math.random() * 24);
+var today = new Date(1, 1, 1, randnum);
+
+var hour = today.getHours();
+
+if (hour >= 0 && hour < 12) {
+  colorobj = mcustomStyle;
+  greeting = "Good morning"
+} else if (hour >= 12 && hour < 18) {
+  colorobj = acustomStyle;
+  greeting = "Good afternoon"
+} else {
+  colorobj = ecustomStyle;
+  greeting = "Good evening"
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <div>
+    <h1 className="heading" style={colorobj}>{greeting}</h1>
+    <p>{randnum} : 00</p>
+  </div>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
